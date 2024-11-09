@@ -25,7 +25,13 @@ const Home = () => {
   }
 
   const sortByViews = () => {
-    let updatedViewsData = [...articleList].sort((a,b) => b.views - a.views);
+    let updatedViewsData = [...articleList].sort((a,b) => {
+        if(a.views === b.views){
+            return new Date(b.date) - new Date(a.date)
+        } else {
+           return b.views - a.views
+        }
+    });
     setArticleList(updatedViewsData);
     console.log('sort by views', updatedViewsData)
   }
